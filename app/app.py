@@ -396,7 +396,7 @@ if st.button("Realizar pronóstico"):
     st.pyplot(fig)
 
     plt.close(fig)
-st.caption(
-        "Los valores positivos aumentan la estimación respecto "
-        "al valor base del modelo y los valores negativos la reducen. "
-    )
+    st.caption(
+            "Los valores positivos aumentan la estimación respecto "
+            "al valor base del modelo y los valores negativos la reducen. "
+        )
