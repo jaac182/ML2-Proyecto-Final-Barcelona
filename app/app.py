@@ -186,13 +186,32 @@ if st.button("Realizar pronóstico"):
     prediccion = max(0, min(1, prediccion))
 
     st.success(
-        f"🏠 Ocupación estimada: {prediccion * 100:.2f}%"
+        f"Ocupación estimada: {prediccion * 100:.2f}%"
+    )
+
+    # Rango estimado basado en validación temporal
+
+    ERROR_P90 = 0.050693
+
+    limite_inferior = max(0.0, prediccion - ERROR_P90)
+    limite_superior = min(1.0, prediccion + ERROR_P90)
+
+    st.info(
+        f"Rango estimado (90%): "
+        f"{limite_inferior * 100:.2f}% – "
+        f"{limite_superior * 100:.2f}%"
     )
 
     st.caption(
-        "La estimación se basa en la disponibilidad publicada "
-        "de alojamientos y no representa reservas confirmadas."
+        "La estimación se basa en la disponibilidad publicada de alojamientos "
+        "y no representa reservas confirmadas."
     )
+
+    st.caption(
+        "El rango se calcula a partir del percentil 90 de los errores absolutos "
+        "observados durante la validación temporal del modelo."
+    )
+
 
 
     # EXPLICACIÓN SHAP
